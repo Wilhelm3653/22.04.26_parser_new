@@ -19,6 +19,14 @@ from .interface import  ParserFactory
 # res = prs.pars_picker(3,4,'./files/data.csv')
 # print(res)
 
+# prs = ParserFactory.create_parser('csv')
+# res = prs.convert_to_json('./files/data.csv', './files/data.json')
+# print(res)
+
+# prs = ParserFactory.create_parser('csv')
+# res = prs.last_row('./files/data.csv')
+# print(res)
+
 prs = ParserFactory.create_parser('csv')
-res = prs.convert_to_json('./files/data.csv', './files/data.json')
+res = prs.row_filter('fam',"=",'1','./files/data.csv')
 print(res)

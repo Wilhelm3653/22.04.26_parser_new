@@ -25,6 +25,7 @@ class CSVParser(DocumentParser):
             print(f"CSV-файл {file_path} обработан", "кол-во строк", len(read))
         except FileNotFoundError:
             print("Ошибка: файл не найден!")
+
     def pars_picker(self,input1 ,input2 ,file_path: str) -> dict:
         try:
             read = pandas.read_csv(file_path)
@@ -33,6 +34,7 @@ class CSVParser(DocumentParser):
             print(f"CSV-файл {file_path} обработан", "кол-во строк", len(output))
         except FileNotFoundError:
             print("Ошибка: файл не найден!")
+
     def convert_to_json(self, file_path: str, new_file_path: str) -> dict:
         try:
             with open(file_path, newline="", encoding="utf-8") as f:
@@ -44,6 +46,20 @@ class CSVParser(DocumentParser):
         except FileNotFoundError:
                     print("Ошибка: файл не найден!")
 
+    def last_row(self, file_path: str) -> dict:
+        read = pandas.read_csv(file_path)
+        output = read.tail(1)
+        print(output)
+    
+    def row_filter(self, input1, operation, input2, file_path: str) -> dict:
+        if operation == "=":
+            read = pandas.read_csv(file_path)
+            filtred = read[read[input1] == input2]
+            print(filtred)
+        else:
+            pass
+
+        
 
 @register_parser("json") 
 class JSONParser(DocumentParser):
